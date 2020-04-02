@@ -6,7 +6,7 @@
          alert/2, alert/3,
          critical/2, critical/3,
          error/2, error/3,
-         warning/2, warning/3,
+         warning/2, warning/3, warn/2, warn/3,
          notice/2, notice/3,
          info/2, info/3,
          debug/2, debug/3
@@ -67,6 +67,14 @@ warning(Channel, Message) ->
 
 -spec warning(string(), string(), [any()]) -> ok | {error, luger_not_running}.
 warning(Channel, Format, Args) ->
+    warning(Channel, io_lib:format(Format, Args)).
+
+-spec warn(string(), string()) -> ok | {error, luger_not_running}.
+warn(Channel, Message) ->
+    warning(Channel, Message).
+
+-spec warning(string(), string(), [any()]) -> ok | {error, luger_not_running}.
+warn(Channel, Format, Args) ->
     warning(Channel, io_lib:format(Format, Args)).
 
 -spec notice(string(), string()) -> ok | {error, luger_not_running}.
